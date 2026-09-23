@@ -153,7 +153,7 @@ function handleSubmit() {
 
     <p v-if="error" class="text-sm text-red-600">{{ error }}</p>
 
-    <button
+    <button id="loginSubmit"
       type="submit"
       :disabled="loading"
       style="background-color: rgb(50, 70, 97);"

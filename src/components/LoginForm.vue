@@ -51,7 +51,8 @@ async function handleSubmit() {
     <button
       type="submit"
       :disabled="loading"
-      class="w-full rounded-md bg-indigo-600 text-white py-2 text-sm font-medium hover:bg-indigo-500 disabled:opacity-50"
+      style="background-color: rgb(50, 70, 97);"
+      class="w-full rounded-md text-white py-2 text-sm font-medium hover:opacity-90 disabled:opacity-50"
     >
       {{ loading ? 'Connexion...' : 'Se connecter' }}
     </button>

@@ -8,6 +8,10 @@ header,footer{
     background-color: rgb(50, 70, 97);
 }
 
+button#loginSubmit{
+    background-color: rgb(50, 70, 97);
+}
+
 button.month-selector{
     background-color: var(--color-blue-200);
     border-radius: 50%;
