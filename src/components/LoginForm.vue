@@ -24,7 +24,7 @@ async function handleSubmit() {
 
 <template>
   <form @submit.prevent="handleSubmit" class="w-full max-w-sm mx-auto flex flex-col gap-4">
-     <img id="homepage_logo" src="/logo.png" alt="Lucius Budget" class="m-auto" />
+     <img id="homepage_logo" src="/logo.png" alt="Lucius Budget" class="m-auto w-24 h-24" />
     <div>
       <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
       <input
@@ -33,7 +33,7 @@ async function handleSubmit() {
         type="email"
         required
         autocomplete="email"
-        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900"
       />
     </div>
     <div>
@@ -44,15 +44,14 @@ async function handleSubmit() {
         type="password"
         required
         autocomplete="current-password"
-        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900"
       />
     </div>
     <p v-if="error" class="text-sm text-red-600">{{ error }}</p>
     <button
       type="submit"
       :disabled="loading"
-      style="background-color: rgb(50, 70, 97);"
-      class="w-full rounded-md text-white py-2 text-sm font-medium hover:opacity-90 disabled:opacity-50"
+      class="w-full rounded-md bg-blue-900 text-white cursor-pointer py-2 text-sm font-medium hover:bg-blue-950 disabled:opacity-50"
     >
       {{ loading ? 'Connexion...' : 'Se connecter' }}
     </button>

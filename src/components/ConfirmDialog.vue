@@ -36,7 +36,7 @@ const emit = defineEmits(['confirm', 'cancel'])
         <button
           type="button"
           @click="emit('confirm')"
-          class="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-500 cursor-pointer"
+          class="rounded-md bg-blue-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-950 cursor-pointer"
         >
           {{ confirmLabel }}
         </button>

@@ -200,15 +200,13 @@ async function confirmDialog() {
                       <button
                         type="button"
                         @click="askDuplicate(entry)"
-                        style="background-color: rgb(50, 70, 97);"
-                        class="rounded-md px-2 py-1 text-xs font-medium text-white hover:opacity-90 cursor-pointer"
+                        class="rounded-md px-2 py-1 text-xs font-medium text-white bg-blue-900 hover:bg-blue-950 cursor-pointer"
                       >
                         Dupliquer
                       </button>
                       <RouterLink
                         :to="`/entry/${entry.id}/edit`"
-                        style="background-color: rgb(50, 70, 97);"
-                        class="rounded-md px-2 py-1 text-xs font-medium text-white hover:opacity-90"
+                        class="rounded-md px-2 py-1 text-xs font-medium text-white bg-blue-900 hover:bg-blue-950"
                       >
                         Éditer
                       </RouterLink>
@@ -268,8 +266,7 @@ async function confirmDialog() {
           <button
             type="button"
             @click="toggleGroupExpenses"
-            style="background-color: rgb(50, 70, 97);"
-            class="mt-2 rounded-md border px-3 py-1.5 text-xs font-medium text-white cursor-pointer"
+            class="bg-blue-900 hover:bg-blue-900 mt-2 rounded-md border px-3 py-1.5 text-xs font-medium text-white cursor-pointer"
           >
             {{ groupExpensesByCategory ? 'Dissocier les catégories' : 'Grouper les catégories' }}
           </button>
@@ -299,15 +296,13 @@ async function confirmDialog() {
                       <button
                         type="button"
                         @click="askDuplicate(entry)"
-                        style="background-color: rgb(50, 70, 97);"
-                        class="rounded-md px-2 py-1 text-xs font-medium text-white hover:opacity-90 cursor-pointer"
+                        class="rounded-md px-2 py-1 text-xs font-medium text-white bg-blue-900 hover:bg-blue-950 cursor-pointer"
                       >
                         Dupliquer
                       </button>
                       <RouterLink
                         :to="`/entry/${entry.id}/edit`"
-                        style="background-color: rgb(50, 70, 97);"
-                        class="rounded-md px-2 py-1 text-xs font-medium text-white hover:opacity-90"
+                        class="rounded-md px-2 py-1 text-xs font-medium text-white bg-blue-900 hover:bg-blue-950"
                       >
                         Éditer
                       </RouterLink>

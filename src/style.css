@@ -5,11 +5,7 @@ body {
 }
 
 header{
-    background-color: rgb(50, 70, 97);
-}
-
-button#loginSubmit{
-    background-color: rgb(50, 70, 97);
+    background-color: var(--color-blue-900);
 }
 
 button.month-selector{

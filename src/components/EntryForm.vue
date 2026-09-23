@@ -78,7 +78,7 @@ function handleSubmit() {
         type="datetime-local"
         :max="maxDate"
         required
-        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900"
       />
     </div>
 
@@ -88,7 +88,7 @@ function handleSubmit() {
         id="category"
         v-model="category"
         required
-        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900"
       >
         <option v-for="c in CATEGORIES" :key="c" :value="c">{{ c }}</option>
       </select>
@@ -113,7 +113,7 @@ function handleSubmit() {
         type="text"
         maxlength="32"
         required
-        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900"
       />
       <div v-if="suggestedLabels.length" class="flex flex-wrap gap-1 mt-1">
         <button
@@ -137,7 +137,7 @@ function handleSubmit() {
         step="0.01"
         min="0"
         required
-        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900"
       />
     </div>
 
@@ -146,7 +146,7 @@ function handleSubmit() {
         id="is_income"
         v-model="isIncome"
         type="checkbox"
-        class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+        class="h-4 w-4 rounded border-gray-300 text-blue-900 focus:ring-blue-900"
       />
       <label for="is_income" class="text-sm font-medium text-gray-700">Est un revenu</label>
     </div>
@@ -156,8 +156,7 @@ function handleSubmit() {
     <button id="loginSubmit"
       type="submit"
       :disabled="loading"
-      style="background-color: rgb(50, 70, 97);"
-      class="w-full cursor-pointer rounded-md text-white py-2 text-sm font-medium hover:opacity-90 disabled:opacity-50"
+      class="w-full cursor-pointer rounded-md bg-blue-900 text-white py-2 text-sm font-medium hover:bg-blue-950 disabled:opacity-50"
     >
       {{ loading ? 'Enregistrement...' : submitLabel }}
     </button>
