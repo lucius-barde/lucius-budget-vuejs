@@ -9,7 +9,7 @@ import NavBar from './components/NavBar.vue'
     <main class="flex-1 flex flex-col">
       <RouterView />
     </main>
-    <footer class="text-center p-2 text-white text-xs">
+    <footer class="bg-white text-center p-2 text-gray-600 text-xs">
         &copy; 2026 <a href="https://www.bardic.space" target="_blank" class="underline">Bardic.Space</a>
     </footer>
   </div>
