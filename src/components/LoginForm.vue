@@ -1,0 +1,58 @@
+<script setup>
+import { ref } from 'vue'
+import { useAuth } from '../lib/useAuth'
+
+const { signIn } = useAuth()
+
+const email = ref('')
+const password = ref('')
+const error = ref('')
+const loading = ref(false)
+
+async function handleSubmit() {
+  error.value = ''
+  loading.value = true
+  try {
+    await signIn(email.value, password.value)
+  } catch (err) {
+    error.value = err.message || 'Connexion impossible.'
+  } finally {
+    loading.value = false
+  }
+}
+</script>
+
+<template>
+  <form @submit.prevent="handleSubmit" class="w-full max-w-sm mx-auto flex flex-col gap-4">
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+      <input
+        id="email"
+        v-model="email"
+        type="email"
+        required
+        autocomplete="email"
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+    </div>
+    <div>
+      <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
+      <input
+        id="password"
+        v-model="password"
+        type="password"
+        required
+        autocomplete="current-password"
+        class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+    </div>
+    <p v-if="error" class="text-sm text-red-600">{{ error }}</p>
+    <button
+      type="submit"
+      :disabled="loading"
+      class="w-full rounded-md bg-indigo-600 text-white py-2 text-sm font-medium hover:bg-indigo-500 disabled:opacity-50"
+    >
+      {{ loading ? 'Connexion...' : 'Se connecter' }}
+    </button>
+  </form>
+</template>
