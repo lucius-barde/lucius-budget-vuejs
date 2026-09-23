@@ -1,7 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { CATEGORIES } from '../lib/categories'
-import { toDatetimeLocalValue, endOfCurrentMonth } from '../lib/entries'
+import { toDatetimeLocalValue, endOfCurrentMonth, topCategories, topLabels } from '../lib/entries'
+import { useAuth } from '../lib/useAuth'
 
 const props = defineProps({
   // Valeurs initiales du formulaire (utilisé aussi bien pour créer que pour éditer)
@@ -25,6 +26,8 @@ const props = defineProps({
 
 const emit = defineEmits(['submit'])
 
+const { user } = useAuth()
+
 const maxDate = toDatetimeLocalValue(endOfCurrentMonth())
 
 const date = ref(props.initialValues.date ?? toDatetimeLocalValue(new Date()))
@@ -32,6 +35,27 @@ const category = ref(props.initialValues.category ?? CATEGORIES[0])
 const label = ref(props.initialValues.label ?? '')
 const amount = ref(props.initialValues.amount ?? '')
 const isIncome = ref(props.initialValues.is_income ?? false)
+
+const suggestedCategories = ref([])
+const suggestedLabels = ref([])
+
+onMounted(async () => {
+  if (!user.value) return
+  try {
+    suggestedCategories.value = await topCategories(user.value.id)
+    suggestedLabels.value = await topLabels(user.value.id)
+  } catch {
+    // Les suggestions sont un bonus, on ignore silencieusement les erreurs.
+  }
+})
+
+function pickCategory(value) {
+  category.value = value
+}
+
+function pickLabel(value) {
+  label.value = value
+}
 
 function handleSubmit() {
   emit('submit', {
@@ -68,6 +92,17 @@ function handleSubmit() {
       >
         <option v-for="c in CATEGORIES" :key="c" :value="c">{{ c }}</option>
       </select>
+      <div v-if="suggestedCategories.length" class="flex flex-wrap gap-1 mt-1">
+        <button
+          v-for="c in suggestedCategories"
+          :key="c"
+          type="button"
+          @click="pickCategory(c)"
+          class="rounded-md bg-blue-100 px-2 py-1.5 text-xs text-gray-600 hover:bg-blue-200 cursor-pointer"
+        >
+          {{ c }}
+        </button>
+      </div>
     </div>
 
     <div>
@@ -80,6 +115,17 @@ function handleSubmit() {
         required
         class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
+      <div v-if="suggestedLabels.length" class="flex flex-wrap gap-1 mt-1">
+        <button
+          v-for="l in suggestedLabels"
+          :key="l"
+          type="button"
+          @click="pickLabel(l)"
+          class="rounded-md bg-blue-100 px-2 py-1.5 text-xs text-gray-600 hover:bg-blue-200 cursor-pointer"
+        >
+          {{ l }}
+        </button>
+      </div>
     </div>
 
     <div>
@@ -110,7 +156,8 @@ function handleSubmit() {
     <button
       type="submit"
       :disabled="loading"
-      class="w-full cursor-pointer rounded-md bg-indigo-600 text-white py-2 text-sm font-medium hover:bg-indigo-500 disabled:opacity-50"
+      style="background-color: rgb(50, 70, 97);"
+      class="w-full cursor-pointer rounded-md text-white py-2 text-sm font-medium hover:opacity-90 disabled:opacity-50"
     >
       {{ loading ? 'Enregistrement...' : submitLabel }}
     </button>

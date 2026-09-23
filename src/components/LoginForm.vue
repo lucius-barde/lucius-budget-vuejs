@@ -24,6 +24,7 @@ async function handleSubmit() {
 
 <template>
   <form @submit.prevent="handleSubmit" class="w-full max-w-sm mx-auto flex flex-col gap-4">
+     <img id="homepage_logo" src="/logo.png" alt="Lucius Budget" class="m-auto" />
     <div>
       <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
       <input

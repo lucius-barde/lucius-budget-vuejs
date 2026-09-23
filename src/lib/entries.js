@@ -80,6 +80,37 @@ export async function duplicateEntry(entry) {
   return data
 }
 
+// Retourne les `limit` valeurs les plus fréquentes d'une colonne (category ou label)
+// parmi les entrées de l'utilisateur, triées par fréquence décroissante.
+async function topValues(authorId, column, limit = 5) {
+  const { data, error } = await supabase
+    .from('luciusbudget_entries')
+    .select(column)
+    .eq('author', authorId)
+
+  if (error) throw error
+
+  const counts = new Map()
+  for (const row of data) {
+    const value = row[column]
+    if (!value) continue
+    counts.set(value, (counts.get(value) || 0) + 1)
+  }
+
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([value]) => value)
+}
+
+export async function topCategories(authorId, limit = 5) {
+  return topValues(authorId, 'category', limit)
+}
+
+export async function topLabels(authorId, limit = 5) {
+  return topValues(authorId, 'label', limit)
+}
+
 export async function listEntriesForMonth(authorId, year, month) {
   // month: 0-11 (comme Date JS)
   const start = new Date(year, month, 1, 0, 0, 0)
