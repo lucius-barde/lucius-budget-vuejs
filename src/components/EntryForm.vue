@@ -110,7 +110,7 @@ function handleSubmit() {
     <button
       type="submit"
       :disabled="loading"
-      class="w-full rounded-md bg-indigo-600 text-white py-2 text-sm font-medium hover:bg-indigo-500 disabled:opacity-50"
+      class="w-full cursor-pointer rounded-md bg-indigo-600 text-white py-2 text-sm font-medium hover:bg-indigo-500 disabled:opacity-50"
     >
       {{ loading ? 'Enregistrement...' : submitLabel }}
     </button>
