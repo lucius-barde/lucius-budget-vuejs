@@ -4,11 +4,13 @@ export const CATEGORIES = [
   'Bouffe',
   'Abonnements',
   'Assurances',
+  'Charges appart.',
   'Divers',
+  'Impôts',
   'Internet',
   'Natel',
   'Loyer',
   'Royalties',
   'Salaire',
-  'Transport'
+  'Transport',
 ]
